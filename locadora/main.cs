@@ -19,7 +19,7 @@ public class Program{
     Console.WriteLine("1 - Inserir novo veiculo");
     Console.WriteLine("2 - Listar veiculo cadastrados");
     Console.WriteLine("0 - Finalizar o sistema");
-    Console.WriteLine("----------------------------------------");
+    Console.WriteLine("---------------------------------------");
     Console.Write("Opção:");
     int op= int.Parse(Console.ReadLine());
     Console.WriteLine();
