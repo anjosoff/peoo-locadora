@@ -1,17 +1,10 @@
 using System;
-class Locadora{
-  private string nome;
-  public Locadora(string nome){
-    this.nome=nome;
-    
+class Locadora {
+  public int IdLocacao {get;set;}
+  public int IdCliente{get;set;}
+  public int IdCarro{get;set;}
+  public override string ToString() {
+    return $"{IdLocacao} - {IdCliente}/n{IdCarro}";
   }
-  public void SetNome(string nome){
-    this.nome=nome;
-  }
-  public string GetNome(){
-    return nome;
-  }
-  public override string ToString(){
-    return $"{nome}";
-  }
+  
 }
