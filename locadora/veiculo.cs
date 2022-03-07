@@ -4,7 +4,7 @@ class Veiculo{
   private string modelo;
   private string placa;
   public Veiculo(int idcarro,string modelo, string placa){
-    this.IdCarro=IdCarro;
+    this.IdCarro=idcarro;
     this.modelo=modelo;
     this.placa=placa;
   }
@@ -27,6 +27,6 @@ class Veiculo{
     return IdCarro;
   }
   public override string ToString(){
-    return $"ID: {IdCarro}\n Modelo: modelo}\n  Placa:{placa}";
+    return $"ID: {IdCarro}\n Modelo: {modelo}\n  Placa:{placa}";
   }
 }

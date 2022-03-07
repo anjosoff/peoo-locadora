@@ -4,7 +4,7 @@ class Locadora {
   public int IdCliente{get;set;}
   public int IdCarro{get;set;}
   public override string ToString() {
-    return $"{IdLocacao} - {IdCliente}/n{IdCarro}";
+    return $"ID da Locação {IdLocacao} - Id do Cliente {IdCliente} \n ID do Veículo{IdCarro}";
   }
   
 }

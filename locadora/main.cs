@@ -6,7 +6,7 @@ public class Program{
   public static void Main(){
     int op=0;
     do{
-      Console.Clear();
+      //Console.Clear();
       Console.WriteLine("Bem vindo ao sistema da LOCADORA DE VEÍCULOS LG");
       Console.WriteLine();
       op=Menu();
@@ -53,7 +53,7 @@ public class Program{
     Console.WriteLine("1 - Inserir Veículos");
     Console.WriteLine("2 - Atualizar Veículos");
     Console.WriteLine("3 - Listar Veículos");
-    Console.WriteLine("3 - Excluir Veículos");
+    Console.WriteLine("4 - Excluir Veículos");
 
     Console.WriteLine("0 - Voltar ao Menu Principal");
     Console.WriteLine("----------------------------------------");
@@ -65,7 +65,7 @@ public class Program{
 
   public static void VeiculoInserir(){
     Console.WriteLine(">>> Inserir um novo veiculo <<<");
-    Console.Write("Digite o ID para identifação do carro:");
+    Console.Write("Digite o ID para identifação do carro: ");
     int id=int.Parse(Console.ReadLine());
     Console.WriteLine("Informe o Modelo do veiculo:");
     string modelo=Console.ReadLine();
@@ -109,7 +109,7 @@ public class Program{
   public static void MainClientes(){
     int opcliente=0;
     do{
-      Console.Clear();
+      //Console.Clear();
       Console.WriteLine("Sistema de Clientes");
       Console.WriteLine();
       opcliente=SubMenuCliente();
@@ -186,7 +186,7 @@ public class Program{
 public static void MainLocacao(){
     int oplocacao=0;
     do{
-      Console.Clear();
+      //Console.Clear();
       Console.WriteLine("Sistema de Locação");
       Console.WriteLine();
       oplocacao=SubMenuLocacao();
