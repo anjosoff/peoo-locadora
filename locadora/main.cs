@@ -147,7 +147,7 @@ public class Program{
     Console.Write("\nDigite o nome do Cliente: ");
     string nome=Console.ReadLine();
     Console.Write("\nInforme o CPF (somente números): ");
-    int cpf=int.Parse(Console.ReadLine());
+    long cpf=long.Parse(Console.ReadLine());
     Console.Write("\nInforme o email: ");
     string email=Console.ReadLine();
     Cliente obj= new Cliente{IdCliente=idcliente,Nome=nome,Cpf=cpf,Email=email};
@@ -240,7 +240,7 @@ public static void MainLocacao(){
     Console.Write("\nInforme o ID da locação: ");
     int id = int.Parse(Console.ReadLine());
     VeiculoListar();
-    Console.Write("\nInsira o ID de um dos veiculos acima: ");3
+    Console.Write("\nInsira o ID de um dos veiculos acima: ");
     int idveiculo=int.Parse(Console.ReadLine());
     ClienteListar();
     Console.Write("\nInsira o ID de um dos clientes acima: ");
