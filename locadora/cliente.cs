@@ -5,6 +5,6 @@ class Cliente {
   public int Cpf { get; set; }
   public string Email { get; set; }
   public override string ToString() {
-    return $"{IdCliente} - {Nome} {Cpf}\n {Email}\n";
+    return $"ID: {IdCliente}\n{Nome} - {Cpf} - {Email}\n";
   }
 }
