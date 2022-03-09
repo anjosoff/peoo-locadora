@@ -13,3 +13,7 @@
 >
 - **Guilherme dos Anjos** - ([@anjosoff](https://github.com/anjosoff))
 - **Leonardo Nadson** - ([@leonardonadson](https://github.com/leonardonadson))
+
+
+## 📥 | Download
+Clique ([aqui](https://github.com/anjosoff/peoo-locadora/archive/refs/heads/main.zip)) para fazer download do Projeto LOCADORA LG zipado.
