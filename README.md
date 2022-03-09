@@ -16,4 +16,4 @@
 
 
 ## 📥 | Download
-Clique ([aqui](https://github.com/anjosoff/peoo-locadora/archive/refs/heads/main.zip)) para fazer download do Projeto LOCADORA LG zipado.
+Clique [aqui](https://github.com/anjosoff/peoo-locadora/archive/refs/heads/main.zip) para fazer download do Projeto LOCADORA LG zipado.
