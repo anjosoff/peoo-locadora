@@ -11,5 +11,5 @@
 
 ## 🚀 | Authors
 >
-- **Guilherme dos Anjos** ([@anjosoff]([https://www.github.com/octokatherine](https://github.com/anjosoff)))
-- **Leonardo Nadson** ([@leonardonadson](https://github.com/leonardonadson))
+- **Guilherme dos Anjos** - ([@anjosoff]((https://github.com/anjosoff)))
+- **Leonardo Nadson** - ([@leonardonadson](https://github.com/leonardonadson))
