@@ -9,7 +9,7 @@
 
 
 
-## 🚀 | Authors
+## 🚀 | Autores (authors)
 >
-- **Guilherme dos Anjos** - ([@anjosoff]((https://github.com/anjosoff)))
+- **Guilherme dos Anjos** - ([@anjosoff](https://github.com/anjosoff))
 - **Leonardo Nadson** - ([@leonardonadson](https://github.com/leonardonadson))
