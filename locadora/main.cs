@@ -193,7 +193,7 @@ public static void MainLocacao(){
     int oplocacao=0;
     do{
       //Console.Clear();
-    Console.WriteLine("<----  Menu de locação ----> \n");
+    Console.WriteLine("<----  Menu de Locação ----> \n");
       oplocacao=SubMenuLocacao();
       switch(oplocacao){
         case 1:LocadoraInserir();break; 
@@ -259,6 +259,12 @@ public static void MainLocacao(){
   
   public static void LocadoraExcluir(){
     LocadoraListar();
-    Console.WriteLine("<---- Excluir uma Locação ---->\n");     
+    Console.WriteLine("<---- Excluir uma Locação ---->\n");
+    LocadoraListar();
+    Console.Write("Informe o id da locação que será excluída: ");
+    int id = int.Parse(Console.ReadLine());
+    Locadora obj =  new Locadora{IdLocacao=id};
+    Sistema.LocadoraExcluir(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----"); 
   }
 }
