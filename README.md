@@ -5,7 +5,7 @@
 > Repository of the Locadora project, developed for evaluation in the discipline of Structured and Object-Oriented Programming with C#, taught by Gilbert Azevedo at IFRN
 
 
-![Logo](https://imgur.com/UkMfQ9m.png)
+![Logo](https://imgur.com/dKVOzFV.png)
 
 
 
