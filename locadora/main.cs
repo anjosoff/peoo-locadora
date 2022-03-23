@@ -74,7 +74,7 @@ public class Program{
 
   public static void VeiculoInserir(){
     Console.WriteLine("<---- Inserir Veículo ---->\n"); 
-    Console.Write("Digite o ID para a identifação do carro: ");
+    Console.Write("Digite o ID para a identifação do veículo: ");
     int id=int.Parse(Console.ReadLine());
     Console.Write("\nInforme o modelo do veiculo: ");
     string modelo=Console.ReadLine();
@@ -242,7 +242,7 @@ public static void MainLocacao(){
     Console.WriteLine("<---- Novo Cadastro de Locação ---->\n"); 
     Console.Write("Escolha um ID para esta locação: ");
     int idloc=int.Parse(Console.ReadLine());
-    Console.WriteLine("\nPara seleção de carros visualize os automovéis disponiveis:\n");
+    Console.WriteLine("\nPara seleção de veículos visualize os automovéis disponiveis:\n");
     VeiculoListar();
     Console.Write("\nID do veículo que deseja alocar:");
     int idveiculo=int.Parse(Console.ReadLine());
