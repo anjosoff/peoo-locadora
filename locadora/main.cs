@@ -15,6 +15,7 @@ public class Program{
         case 1:MainVeiculos();break;
         case 2:MainClientes();break;
         case 3:MainLocacao();break;
+        case 0:Main();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       } 
       }catch(FormatException){
@@ -49,6 +50,7 @@ public class Program{
         case 2:VeiculoAtualizar();break;
         case 3:VeiculoListar();break;
         case 4:VeiculoExcluir();break;
+        case 0:MainVeiculos();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -130,6 +132,7 @@ public class Program{
         case 2:ClienteAtualizar();break;
         case 3:ClienteListar();break;
         case 4:ClienteExcluir();break;
+        case 0:MainClientes();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -215,6 +218,7 @@ public static void MainLocacao(){
         case 4:LocadoraExcluir();break;
         case 5:Sistema.ToXML();break;
         case 6:Sistema.FromXML();
+        case 0:MainLocacao();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){

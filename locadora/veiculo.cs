@@ -1,12 +1,27 @@
 using System;
-class Veiculo{
-  private int IdVeiculo;
+public class Veiculo{
+  private int idVeiculo;
+  public int IdVeiculo{
+    set{idVeiculo=value;}
+    get{return idVeiculo;}
+  }
   private string modelo;
+  public string Modelo{
+    set{modelo=value;}
+    get{return modelo;}
+  }
   private string placa;
+  public string Placa{
+    set{placa=value;}
+    get{return placa;}
+  }
   public Veiculo(int idveiculo,string modelo, string placa){
-    this.IdVeiculo=idveiculo;
+    this.idVeiculo=idveiculo;
     this.modelo=modelo;
     this.placa=placa;
+  }
+  public Veiculo(){
+    
   }
   public void SetModelo(string modelo){
     this.modelo=modelo;
@@ -24,7 +39,7 @@ class Veiculo{
     return modelo;
   }
   public int GetIdVeiculo(){
-    return IdVeiculo;
+    return idVeiculo;
   }
   public override string ToString(){
     return $"ID: {IdVeiculo}\n Modelo: {modelo}\n  Placa:{placa}";
