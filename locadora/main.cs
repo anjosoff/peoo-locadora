@@ -10,19 +10,21 @@ public class Program{
     int op=0;
     do{
       try{
-       Console.WriteLine("Seja bem-vindo(a) ao sistema da Locadora de Veículos - LG");
-      Console.WriteLine();
-      op=Menu();
-      switch(op){
-        case 1:MainVeiculos();break;
-        case 2:MainClientes();break;
-        case 3:MainLocacao();break;
-        case 0:;break;
-        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
-      } 
+        Console.Clear();
+        Console.WriteLine("Seja bem-vindo(a) ao sistema da Locadora de Veículos - LG");
+        Console.WriteLine();
+        op=Menu();
+        switch(op){
+          case 1:MainVeiculos();break;
+          case 2:MainClientes();break;
+          case 3:MainLocacao();break;
+          case 0:;break;
+          default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+        }
       }catch(Exception erro){
         Console.WriteLine("Erro:"+erro.Message);
       }
+    Thread.Sleep(2000);
     }while(op!=0);
   }
 
@@ -44,6 +46,7 @@ public class Program{
     int opveiculo=0;
     do{
       try{
+        Console.Clear();
         Console.WriteLine("<---- Menu de Veículos ---->\n");      
       Console.WriteLine();
       opveiculo=SubMenuVeiculo();
@@ -52,12 +55,13 @@ public class Program{
         case 2:VeiculoAtualizar();break;
         case 3:VeiculoListar();break;
         case 4:VeiculoExcluir();break;
-        case 0:Main();break;
+        case 0:;break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
         Console.WriteLine("Digite apenas números");
       }
+    Thread.Sleep(2000);
     }while(opveiculo!=0);
   }
 
@@ -77,6 +81,7 @@ public class Program{
   }
 
   public static void VeiculoInserir(){
+    Console.Clear();
     Console.WriteLine("<---- Inserir Veículo ---->\n"); 
     Console.Write("Digite o ID para a identifação do veículo: ");
     int id=int.Parse(Console.ReadLine());
@@ -87,12 +92,14 @@ public class Program{
     Veiculo obj= new Veiculo(id,modelo,placa);
     Sistema.VeiculoInserir(obj);
     Console.WriteLine("\nVeiculo registrado!");
-    Console.WriteLine("\n ------------------------------");
+    Console.WriteLine("\n------------------------------");
+    Thread.Sleep(2000);
   }
   
   public static void VeiculoAtualizar(){
+    Console.Clear();
     VeiculoListar();
-    Console.WriteLine("<---- Atualizar dados de um Veículo ----> \n"); 
+    Console.WriteLine("<---- Atualizar dados de um Veículo ---->\n"); 
     Console.Write("Digite o ID do veiculo que será atualizado: ");
     int id=int.Parse(Console.ReadLine());
     Console.Write("\nInsira o novo modelo: ");
@@ -102,49 +109,55 @@ public class Program{
     Veiculo obj= new Veiculo(id,modelo,placa);
     Sistema.VeiculoAtualizar(obj);
      Console.WriteLine("\n----- Operação realizada com sucesso -----");
+    Thread.Sleep(2000);
   }
   
   public static void VeiculoListar(){
+    Console.Clear();
     Console.WriteLine("<---- Lista de veiculos cadastrados ----> \n"); 
     foreach(Veiculo obj in Sistema.VeiculoListar())
        Console.WriteLine(obj);
     Console.WriteLine("\n------------------------------"); 
+    Thread.Sleep(5000);
   }
   
   public static void VeiculoExcluir(){
+    Console.Clear();
     VeiculoListar();
     Console.WriteLine("<---- Excluindo um veiculo ---->\n"); 
-    Console.Write("Insira o ID do veiculo que será excluído:");
+    Console.Write("Insira o ID do veiculo que será excluído: ");
     int id=int.Parse(Console.ReadLine());
     string modelo="";
     string placa="";
     Veiculo obj = new Veiculo(id,modelo,placa);
     Sistema.VeiculoExcluir(obj);
-    Console.WriteLine("----- Operação realizada com sucesso -----");    
+    Console.WriteLine("\n----- Operação realizada com sucesso -----");
+    Thread.Sleep(2000);
   }
 
   public static void MainClientes(){
     int opcliente=0;
     do{
       try{
+        Console.Clear();
         Console.WriteLine("<----  Menu de Clientes ----> \n");
-      opcliente=SubMenuCliente();
-      switch(opcliente){
-        case 1:ClienteInserir();break;
-        case 2:ClienteAtualizar();break;
-        case 3:ClienteListar();break;
-        case 4:ClienteExcluir();break;
-        case 0:Main();break;
-        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
-      }
+        opcliente=SubMenuCliente();
+        switch(opcliente){
+          case 1:ClienteInserir();break;
+          case 2:ClienteAtualizar();break;
+          case 3:ClienteListar();break;
+          case 4:ClienteExcluir();break;
+          case 0:;break;
+          default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+        }
       }catch(FormatException){
         Console.WriteLine("Digite apenas números!");
       }
+    Thread.Sleep(2000);
     }while(opcliente!=0);
   }
 
   public static int SubMenuCliente(){
-
     Console.WriteLine("Escolha uma opção: \n");
     Console.WriteLine("1 - Inserir novo cliente");
     Console.WriteLine("2 - Atualizar dados do cliente");
@@ -159,6 +172,7 @@ public class Program{
   }
   
   public static void ClienteInserir(){
+    Console.Clear();
     Console.WriteLine("<---- Novo Cadastro de Cliente ---->\n");   
     Console.Write("Digite o ID para o Cliente: ");
     int idcliente=int.Parse(Console.ReadLine());         
@@ -170,10 +184,12 @@ public class Program{
     string email=Console.ReadLine();
     Cliente obj= new Cliente{IdCliente=idcliente,Nome=nome,Cpf=cpf,Email=email};
     Sistema.ClienteInserir(obj);
-    Console.WriteLine("----- Operação realizada com sucesso -----");    
+    Console.WriteLine("\n----- Operação realizada com sucesso -----"); 
+    Thread.Sleep(2000);
   }
 
   public static void ClienteAtualizar(){
+    Console.Clear();
     ClienteListar();
     Console.WriteLine("<---- Atualizar um cliente ---->\n"); 
     Console.Write("Informe o id do cliente que será atualizado: ");
@@ -186,14 +202,17 @@ public class Program{
     int cpf=int.Parse(Console.ReadLine());
     Cliente obj =  new Cliente{IdCliente=id,Nome=nome,Cpf=cpf,Email=email};
     Sistema.ClienteAtualizar(obj);
-    Console.WriteLine("----- Operação realizada com sucesso -----");    
+    Console.WriteLine("\n----- Operação realizada com sucesso -----");    
+    Thread.Sleep(2000);
   }
   
   public static void ClienteListar(){
+    Console.Clear();
     Console.WriteLine("<---- Lista de clientes ativos ---->\n"); 
     foreach(Cliente obj in Sistema.ClienteListar())
        Console.WriteLine(obj);
     Console.WriteLine("------------------------------"); 
+    Thread.Sleep(2000);
   }  
   
   public static void ClienteExcluir(){
@@ -204,28 +223,31 @@ public class Program{
     int id = int.Parse(Console.ReadLine());
     Cliente obj =  new Cliente{IdCliente=id};
     Sistema.ClienteExcluir(obj);
-    Console.WriteLine("----- Operação realizada com sucesso -----"); 
+    Console.WriteLine("\n----- Operação realizada com sucesso -----");
+    Thread.Sleep(2000);
   }
 
 public static void MainLocacao(){
     int oplocacao=0;
     do{
       try{
-      Console.WriteLine("<----  Menu de Locação ----> \n");
-      oplocacao=SubMenuLocacao();
-      switch(oplocacao){
-        case 1:LocacaoInserir();break; 
-        case 2:LocacaoAtualizar();break; 
-        case 3:LocacaoListar();break; 
-        case 4:LocacaoExcluir();break;
-        case 5:Sistema.FromXML();break;
-        case 6:Sistema.ToXML();Console.WriteLine("Os dados da locação foram salvos");break;
-        case 0:Main();break;
-        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
-      }
+        Console.Clear();
+        Console.WriteLine("<----  Menu de Locação ----> \n");
+        oplocacao=SubMenuLocacao();
+        switch(oplocacao){
+          case 1:LocacaoInserir();break; 
+          case 2:LocacaoAtualizar();break; 
+          case 3:LocacaoListar();break; 
+          case 4:LocacaoExcluir();break;
+          case 5:Sistema.FromXML();break;
+          case 6:Sistema.ToXML();Console.WriteLine("Os dados da locação foram salvos");break;
+          case 0:;break;
+          default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+        }
       }catch(FormatException){
         Console.WriteLine("Digite apenas números");
       }
+    Thread.Sleep(2000);
     }while(oplocacao!=0);
   }
 
@@ -245,9 +267,10 @@ public static void MainLocacao(){
   }
 
   public static void LocacaoInserir(){
+    Console.Clear();
     DateTime data=DateTime.Now;
-    Console.WriteLine("<---- Novo Cadastro de Locação ---->\n"); 
-    Console.Write("Escolha um ID para esta locação: ");
+    Console.WriteLine("<---- Novo Cadastro de Locação ---->"); 
+    Console.Write("\nEscolha um ID para esta locação: ");
     int idloc=int.Parse(Console.ReadLine());
     Console.WriteLine("\nPara seleção de veículos visualize os automovéis disponiveis:\n");
     VeiculoListar();
@@ -256,19 +279,21 @@ public static void MainLocacao(){
     ClienteListar();
     Console.Write("\nID do cliente que deseja alocar:");    
     int idcliente=int.Parse(Console.ReadLine());
-    Console.Write("Digite a data de retirada(enter para a data de hoje): ");
+    Console.Write("\nDigite a data de retirada(enter para a data de hoje): ");
     string d=Console.ReadLine();
     if(d!="")data= DateTime.Parse(Console.ReadLine());
-    Console.Write("Digite a data de devolução(dd/mm/aaaa):");
+    Console.Write("\nDigite a data de devolução(dd/mm/aaaa):");
     DateTime data2= DateTime.Parse(Console.ReadLine());
     Locacao obj = new Locacao{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo, Dretira=data, Ddevolve=data2};
     Sistema.LocacaoInserir(obj);
-    Console.WriteLine("----- Operação realizada com sucesso -----");
+    Console.WriteLine("\n----- Operação realizada com sucesso -----");
+    Thread.Sleep(2000);
   }
   
   public static void LocacaoAtualizar(){
+    Console.Clear();
     LocacaoListar();
-    Console.WriteLine("<---- Atualizar uma Locação ---->\n"); 
+    Console.WriteLine("<---- Atualizar uma Locação ---->"); 
      LocacaoListar();
     Console.Write("\nInforme o ID da locação: ");
     int id = int.Parse(Console.ReadLine());
@@ -281,9 +306,11 @@ public static void MainLocacao(){
     Locacao obj =  new Locacao{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo};
     Sistema.LocacaoAtualizar(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
+    Thread.Sleep(2000);
   }
 
   public static void LocacaoListar(){
+    Console.Clear();
     Console.WriteLine("<---- Lista de Locações ---->");     
     foreach(Locacao obj in Sistema.LocacaoListar()) { 
       Veiculo v = Sistema.VeiculoListar(obj.IdVeiculo);
@@ -291,15 +318,18 @@ public static void MainLocacao(){
       Console.WriteLine($"\n{c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()}\n------------------------------\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}");
     Console.WriteLine("------------------------------"); 
     }
+    Thread.Sleep(5000);
   }
   public static void LocacaoExcluir(){
+    Console.Clear();
     LocacaoListar();
     Console.WriteLine("<---- Excluir uma Locação ---->\n");
     LocacaoListar();
-    Console.Write("Informe o id da locação que será excluída: ");
+    Console.Write("\nInforme o id da locação que será excluída: ");
     int id = int.Parse(Console.ReadLine());
     Locacao obj =  new Locacao{IdLocacao=id};
     Sistema.LocacaoExcluir(obj);
-    Console.WriteLine("----- Operação realizada com sucesso -----"); 
+    Console.WriteLine("\n----- Operação realizada com sucesso -----"); 
+    Thread.Sleep(2000);
   }
 }
