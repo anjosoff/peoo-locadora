@@ -1,18 +1,24 @@
 using System;
 using System.Globalization;
 using System.Threading;
-
+using System.Xml.Serialization;
+using System.IO;
 public class Program{
   public static void Main(){
     int op=0;
     do{
-      Console.WriteLine("Seja bem-vindo(a) ao sistema da Locadora de Veículos - LG");
+      try{
+       Console.WriteLine("Seja bem-vindo(a) ao sistema da Locadora de Veículos - LG");
       Console.WriteLine();
       op=Menu();
       switch(op){
         case 1:MainVeiculos();break;
         case 2:MainClientes();break;
         case 3:MainLocacao();break;
+        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+      } 
+      }catch(FormatException){
+        Console.WriteLine("Digite apenas números");
       }
     }while(op!=0);
   }
@@ -34,8 +40,8 @@ public class Program{
   public static void MainVeiculos(){
     int opveiculo=0;
     do{
-      //Console.Clear();
-      Console.WriteLine("<---- Menu de Veículos ---->\n");      
+      try{
+        Console.WriteLine("<---- Menu de Veículos ---->\n");      
       Console.WriteLine();
       opveiculo=SubMenuVeiculo();
       switch(opveiculo){
@@ -43,6 +49,10 @@ public class Program{
         case 2:VeiculoAtualizar();break;
         case 3:VeiculoListar();break;
         case 4:VeiculoExcluir();break;
+        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+      }
+      }catch(FormatException){
+        Console.WriteLine("Digite apenas números");
       }
     }while(opveiculo!=0);
   }
@@ -112,14 +122,18 @@ public class Program{
   public static void MainClientes(){
     int opcliente=0;
     do{
-      //Console.Clear();
-    Console.WriteLine("<----  Menu de Clientes ----> \n");
+      try{
+        Console.WriteLine("<----  Menu de Clientes ----> \n");
       opcliente=SubMenuCliente();
       switch(opcliente){
         case 1:ClienteInserir();break;
         case 2:ClienteAtualizar();break;
         case 3:ClienteListar();break;
         case 4:ClienteExcluir();break;
+        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+      }
+      }catch(FormatException){
+        Console.WriteLine("Digite apenas números!");
       }
     }while(opcliente!=0);
   }
@@ -191,14 +205,20 @@ public class Program{
 public static void MainLocacao(){
     int oplocacao=0;
     do{
-      //Console.Clear();
-    Console.WriteLine("<----  Menu de Locação ----> \n");
+      try{
+      Console.WriteLine("<----  Menu de Locação ----> \n");
       oplocacao=SubMenuLocacao();
       switch(oplocacao){
         case 1:LocadoraInserir();break; 
         case 2:LocadoraAtualizar();break; 
         case 3:LocadoraListar();break; 
-        case 4:LocadoraExcluir();break; 
+        case 4:LocadoraExcluir();break;
+        case 5:Sistema.ToXML();break;
+        case 6:Sistema.FromXML();
+        default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+      }
+      }catch(FormatException){
+        Console.WriteLine("Digite apenas números");
       }
     }while(oplocacao!=0);
   }
@@ -209,6 +229,8 @@ public static void MainLocacao(){
     Console.WriteLine("2 - Atualizar locação");
     Console.WriteLine("3 - Listar locação");
     Console.WriteLine("4 - Excluir locação");
+    Console.WriteLine("5 - Abrir locações salvar");
+    Console.WriteLine("6 - Salvar locações");
     Console.WriteLine("0 - Voltar ao Menu Principal");
     Console.WriteLine("\n------------------------------"); 
     Console.Write("\nOpção: ");
@@ -222,12 +244,12 @@ public static void MainLocacao(){
     int idloc=int.Parse(Console.ReadLine());
     Console.WriteLine("\nPara seleção de carros visualize os automovéis disponiveis:\n");
     VeiculoListar();
-    Console.Write("\nID do carro que deseja alocar: ");
+    Console.Write("\nID do veículo que deseja alocar:");
     int idveiculo=int.Parse(Console.ReadLine());
-    Console.WriteLine("\nID do cliente que deseja alocar \n");    
     ClienteListar();
+    Console.Write("\nID do cliente que deseja alocar:");    
     int idcliente=int.Parse(Console.ReadLine());
-    Locadora obj =  new Locadora{IdLocacao=idloc,IdCliente=idcliente,IdCarro=idveiculo};
+    Locadora obj =  new Locadora{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo};
     Sistema.LocadoraInserir(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
@@ -244,18 +266,20 @@ public static void MainLocacao(){
     ClienteListar();
     Console.Write("\nInsira o ID de um dos clientes acima: ");
     int idcliente = int.Parse(Console.ReadLine());
-    Locadora obj =  new Locadora{IdLocacao=id,IdCliente=idcliente,IdCarro=idveiculo};
+    Locadora obj =  new Locadora{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo};
     Sistema.LocadoraAtualizar(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
   }
 
   public static void LocadoraListar(){
     Console.WriteLine("<---- Lista de Locações ---->\n");     
-    foreach(Locadora obj in Sistema.LocadoraListar())
-       Console.WriteLine(obj);
+    foreach(Locadora obj in Sistema.LocadoraListar()) { 
+      Veiculo v = Sistema.VeiculoListar(obj.IdVeiculo);
+      Cliente c = Sistema.ClienteListar(obj.IdCliente);
+      Console.WriteLine($"\n{c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()} ");
     Console.WriteLine("\n------------------------------"); 
+    }
   }
-  
   public static void LocadoraExcluir(){
     LocadoraListar();
     Console.WriteLine("<---- Excluir uma Locação ---->\n");

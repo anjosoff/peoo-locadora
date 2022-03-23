@@ -1,10 +1,10 @@
 using System;
 class Veiculo{
-  private int IdCarro;
+  private int IdVeiculo;
   private string modelo;
   private string placa;
-  public Veiculo(int idcarro,string modelo, string placa){
-    this.IdCarro=idcarro;
+  public Veiculo(int idveiculo,string modelo, string placa){
+    this.IdVeiculo=idveiculo;
     this.modelo=modelo;
     this.placa=placa;
   }
@@ -14,8 +14,8 @@ class Veiculo{
   public void SetPlaca(string placa){
     this.placa=placa;
   }
-  public void SetIdCarro(int idcarro){
-    this.IdCarro=idcarro;
+  public void SetIdVeiculo(int idveiculo){
+    this.IdVeiculo=idveiculo;
   }
   public string GetPlaca(){
     return placa;
@@ -23,10 +23,10 @@ class Veiculo{
   public string GetModelo(){
     return modelo;
   }
-  public int GetIdCarro(){
-    return IdCarro;
+  public int GetIdVeiculo(){
+    return IdVeiculo;
   }
   public override string ToString(){
-    return $"ID: {IdCarro}\n Modelo: {modelo}\n  Placa:{placa}";
+    return $"ID: {IdVeiculo}\n Modelo: {modelo}\n  Placa:{placa}";
   }
 }

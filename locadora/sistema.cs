@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using System.Xml.Serialization;
+using System.IO;
 class Sistema{
   private static Veiculo[] veiculos = new Veiculo[10]; 
   private static int nVeiculos;
@@ -25,17 +27,17 @@ class Sistema{
   }
   public static Veiculo VeiculoListar(int id){
     foreach(Veiculo obj in veiculos)
-      if(obj != null && obj.GetIdCarro()==id) return obj;
+      if(obj != null && obj.GetIdVeiculo()==id) return obj;
     return null;
   }
   public static void VeiculoAtualizar(Veiculo obj){
-    Veiculo aux= VeiculoListar(obj.GetIdCarro());
+    Veiculo aux= VeiculoListar(obj.GetIdVeiculo());
     if(aux!=null)
       aux.SetModelo(obj.GetModelo());
       aux.SetPlaca(obj.GetPlaca());
   }
   public static void VeiculoExcluir(Veiculo obj){
-    int aux=VeiculoIndice(obj.GetIdCarro());
+    int aux=VeiculoIndice(obj.GetIdVeiculo());
     
     if(aux!=-1)
       for(int i=aux; i<nVeiculos -1; i++)
@@ -45,7 +47,7 @@ class Sistema{
   public static int VeiculoIndice(int id){
     for(int i=0; i<nVeiculos;i++){
       Veiculo obj = veiculos[i];
-      if(obj.GetIdCarro()==id) return i;
+      if(obj.GetIdVeiculo()==id) return i;
     }
     return -1;
   }
@@ -112,11 +114,25 @@ public static void ClienteInserir(Cliente obj) {
     Locadora aux = LocadoraListar(obj.IdLocacao);
     if (aux != null) {
       aux.IdCliente=obj.IdCliente;
-      aux.IdCarro=obj.IdCarro;
+      aux.IdVeiculo=obj.IdVeiculo;
     }
   }
   public static void LocadoraExcluir(Locadora obj) {
     Locadora aux = LocadoraListar(obj.IdLocacao);
     if (aux != null) locadoras.Remove(aux);
+  }
+  public static void ToXML(List<Locadora> obj) {
+    XmlSerializer xml = new XmlSerializer(typeof(List<Locadora>));
+    StreamWriter f = new StreamWriter("locadora.xml");
+    xml.Serialize(f, obj);
+    f.Close();
+  }
+
+  public static List<Locadora> FromXML() {
+    XmlSerializer xml = new XmlSerializer(typeof(List<Locadora>));
+    StreamReader f = new StreamReader("locadora.xml");
+    List<Locadora> obj = (List<Locadora>)xml.Deserialize(f);
+    f.Close();
+    return obj;
   }
 }
