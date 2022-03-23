@@ -3,8 +3,10 @@ using System.Globalization;
 using System.Threading;
 using System.Xml.Serialization;
 using System.IO;
+
 public class Program{
   public static void Main(){
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
     int op=0;
     do{
       try{
@@ -15,11 +17,10 @@ public class Program{
         case 1:MainVeiculos();break;
         case 2:MainClientes();break;
         case 3:MainLocacao();break;
-        case 0:Main();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       } 
-      }catch(FormatException){
-        Console.WriteLine("Digite apenas números");
+      }catch(Exception erro){
+        Console.WriteLine("Erro:"+erro.Message);
       }
     }while(op!=0);
   }
@@ -50,7 +51,6 @@ public class Program{
         case 2:VeiculoAtualizar();break;
         case 3:VeiculoListar();break;
         case 4:VeiculoExcluir();break;
-        case 0:MainVeiculos();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -132,7 +132,6 @@ public class Program{
         case 2:ClienteAtualizar();break;
         case 3:ClienteListar();break;
         case 4:ClienteExcluir();break;
-        case 0:MainClientes();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -215,10 +214,9 @@ public static void MainLocacao(){
         case 1:LocadoraInserir();break; 
         case 2:LocadoraAtualizar();break; 
         case 3:LocadoraListar();break; 
-        case 4:LocadoraExcluir();break;
-        case 5:Sistema.ToXML();break;
-        case 6:Sistema.FromXML();
-        case 0:MainLocacao();break;
+        case 4:LocacaoExcluir();break;
+        case 5:Sistema.FromXML();break;
+        case 6:Sistema.ToXML();Console.WriteLine("Os dados da locação foram salvos");break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -242,7 +240,8 @@ public static void MainLocacao(){
     return oplocacao;
   }
 
-  public static void LocadoraInserir(){
+  public static void LocacaoaInserir(){
+    DateTime data=DateTime.Now;
     Console.WriteLine("<---- Novo Cadastro de Locação ---->\n"); 
     Console.Write("Escolha um ID para esta locação: ");
     int idloc=int.Parse(Console.ReadLine());
@@ -253,15 +252,20 @@ public static void MainLocacao(){
     ClienteListar();
     Console.Write("\nID do cliente que deseja alocar:");    
     int idcliente=int.Parse(Console.ReadLine());
-    Locadora obj =  new Locadora{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo};
-    Sistema.LocadoraInserir(obj);
+    Console.Write("Digite a data de retirada(enter para a data de hoje): ");
+    string d=Console.ReadLine();
+    if(d!="")data= DateTime.Parse(Console.ReadLine());
+    Console.Write("Digite a data de devolução:");
+    DateTime data2= DateTime.Parse(Console.ReadLine());
+    Locacao obj = new Locacao{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo, Dretira=data, Ddevolve=data2};
+    Sistema.LocacaoInserir(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
   
-  public static void LocadoraAtualizar(){
-    LocadoraListar();
+  public static void LocacaoAtualizar(){
+    LocacaoListar();
     Console.WriteLine("<---- Atualizar uma Locação ---->\n"); 
-    LocadoraListar();
+     LocacaoListar();
     Console.Write("\nInforme o ID da locação: ");
     int id = int.Parse(Console.ReadLine());
     VeiculoListar();
@@ -270,28 +274,28 @@ public static void MainLocacao(){
     ClienteListar();
     Console.Write("\nInsira o ID de um dos clientes acima: ");
     int idcliente = int.Parse(Console.ReadLine());
-    Locadora obj =  new Locadora{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo};
-    Sistema.LocadoraAtualizar(obj);
+    Locacao obj =  new Locacao{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo};
+    Sistema.LocacaoAtualizar(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
   }
 
-  public static void LocadoraListar(){
-    Console.WriteLine("<---- Lista de Locações ---->\n");     
-    foreach(Locadora obj in Sistema.LocadoraListar()) { 
+  public static void LocacaoListar(){
+    Console.WriteLine("<---- Lista de Locações ---->");     
+    foreach(Locacao obj in Sistema.LocacaoListar()) { 
       Veiculo v = Sistema.VeiculoListar(obj.IdVeiculo);
       Cliente c = Sistema.ClienteListar(obj.IdCliente);
-      Console.WriteLine($"\n{c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()} ");
-    Console.WriteLine("\n------------------------------"); 
+      Console.WriteLine($"\n{c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()}\n------------------------------\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}");
+    Console.WriteLine("------------------------------"); 
     }
   }
-  public static void LocadoraExcluir(){
-    LocadoraListar();
+  public static void LocacaoExcluir(){
+    LocacaoListar();
     Console.WriteLine("<---- Excluir uma Locação ---->\n");
-    LocadoraListar();
+    LocacaoListar();
     Console.Write("Informe o id da locação que será excluída: ");
     int id = int.Parse(Console.ReadLine());
-    Locadora obj =  new Locadora{IdLocacao=id};
-    Sistema.LocadoraExcluir(obj);
+    Locacao obj =  new Locacao{IdLocacao=id};
+    Sistema.LocacaoExcluir(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----"); 
   }
 }
