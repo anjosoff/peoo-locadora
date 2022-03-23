@@ -6,7 +6,6 @@ public class Program{
   public static void Main(){
     int op=0;
     do{
-      //Console.Clear();
       Console.WriteLine("Seja bem-vindo(a) ao sistema da Locadora de Veículos - LG");
       Console.WriteLine();
       op=Menu();
