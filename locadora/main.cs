@@ -17,6 +17,7 @@ public class Program{
         case 1:MainVeiculos();break;
         case 2:MainClientes();break;
         case 3:MainLocacao();break;
+        case 0:Main();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       } 
       }catch(Exception erro){
@@ -51,6 +52,7 @@ public class Program{
         case 2:VeiculoAtualizar();break;
         case 3:VeiculoListar();break;
         case 4:VeiculoExcluir();break;
+        case 0:Main();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -132,6 +134,7 @@ public class Program{
         case 2:ClienteAtualizar();break;
         case 3:ClienteListar();break;
         case 4:ClienteExcluir();break;
+        case 0:Main();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -211,12 +214,13 @@ public static void MainLocacao(){
       Console.WriteLine("<----  Menu de Locação ----> \n");
       oplocacao=SubMenuLocacao();
       switch(oplocacao){
-        case 1:LocadoraInserir();break; 
-        case 2:LocadoraAtualizar();break; 
-        case 3:LocadoraListar();break; 
+        case 1:LocacaoInserir();break; 
+        case 2:LocacaoAtualizar();break; 
+        case 3:LocacaoListar();break; 
         case 4:LocacaoExcluir();break;
         case 5:Sistema.FromXML();break;
         case 6:Sistema.ToXML();Console.WriteLine("Os dados da locação foram salvos");break;
+        case 0:Main();break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       }
       }catch(FormatException){
@@ -240,7 +244,7 @@ public static void MainLocacao(){
     return oplocacao;
   }
 
-  public static void LocacaoaInserir(){
+  public static void LocacaoInserir(){
     DateTime data=DateTime.Now;
     Console.WriteLine("<---- Novo Cadastro de Locação ---->\n"); 
     Console.Write("Escolha um ID para esta locação: ");

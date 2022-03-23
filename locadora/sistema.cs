@@ -7,7 +7,7 @@ using System.IO;
 class Sistema{
   private static Veiculo[] veiculos = new Veiculo[10]; 
   private static int nVeiculos;
-  private static List<Locadora> locadoras = new List<Locadora>();
+  private static List<Locacao> locacoes = new List<Locacao>();
   private static List<Cliente> clientes = new List<Cliente>();
 
 /*
@@ -88,30 +88,30 @@ public static void ClienteInserir(Cliente obj) {
     FUNÇÕE DA CLASSE LOCADORA
 */
   
-  public static void LocadoraInserir(Locadora obj) {
+  public static void LocacaoInserir(Locacao obj) {
     int id = 0;
-    foreach(Locadora aux in locadoras)
+    foreach(Locacao aux in locacoes)
       if (aux.IdLocacao > id) id = aux.IdLocacao;
     obj.IdLocacao = id + 1;  
-    locadoras.Add(obj);
+    locacoes.Add(obj);
   }
-  public static List<Locadora> LocadoraListar() {
-    return locadoras;
+  public static List<Locacao> LocacaoListar() {
+    return locacoes;
   }
-  public static List<Locadora> LocadoraListar(Cliente cliente) {   
-    List<Locadora> loc=new List<Locadora>();
-    foreach(Locadora obj in locadoras)
+  public static List<Locacao> LocacaoListar(Cliente cliente) {   
+    List<Locacao> loc=new List<Locacao>();
+    foreach(Locacao obj in locacoes)
       if (obj.IdCliente == cliente.IdCliente) 
         loc.Add(obj);
     return loc;  
   }
-  public static Locadora LocadoraListar(int id) {
-    foreach(Locadora obj in locadoras)
+  public static Locacao LocacaoListar(int id) {
+    foreach(Locacao obj in locacoes)
       if (obj.IdLocacao == id) return obj;
     return null;  
   }
-  public static void LocadoraAtualizar(Locadora obj) {
-    Locadora aux = LocadoraListar(obj.IdLocacao);
+  public static void LocacaoAtualizar(Locacao obj) {
+    Locacao aux = LocacaoListar(obj.IdLocacao);
     if (aux != null) {
       aux.IdCliente=obj.IdCliente;
       aux.IdVeiculo=obj.IdVeiculo;
@@ -119,15 +119,15 @@ public static void ClienteInserir(Cliente obj) {
       aux.Ddevolve=obj.Ddevolve;
     }
   }
-  public static void LocadoraExcluir(Locadora obj) {
-    Locadora aux = LocadoraListar(obj.IdLocacao);
-    if (aux != null) locadoras.Remove(aux);
+  public static void LocacaoExcluir(Locacao obj) {
+    Locacao aux = LocacaoListar(obj.IdLocacao);
+    if (aux != null) locacoes.Remove(aux);
   }
   public static void ToXML() {
     //locadora
-    XmlSerializer xml = new XmlSerializer(typeof(List<Locadora>));
-    StreamWriter f = new StreamWriter("locadora.xml");
-    xml.Serialize(f, locadoras);
+    XmlSerializer xml = new XmlSerializer(typeof(List<Locacao>));
+    StreamWriter f = new StreamWriter("locacao.xml");
+    xml.Serialize(f, locacoes);
     f.Close();
 
     //veiculo
@@ -145,9 +145,9 @@ public static void ClienteInserir(Cliente obj) {
 
   public static void FromXML() {
     //locadora
-    XmlSerializer xml = new XmlSerializer(typeof(List<Locadora>));
-    StreamReader f = new StreamReader("locadora.xml");
-    locadoras = (List<Locadora>)xml.Deserialize(f);
+    XmlSerializer xml = new XmlSerializer(typeof(List<Locacao>));
+    StreamReader f = new StreamReader("locacao.xml");
+    locacoes = (List<Locacao>)xml.Deserialize(f);
     f.Close();
     // veiculo
     XmlSerializer xml1 = new XmlSerializer(typeof(Veiculo[]));

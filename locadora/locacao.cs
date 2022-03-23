@@ -1,5 +1,5 @@
 using System;
-public class Locacao {
+public class Locacao{
   public int IdLocacao {get;set;}
   public int IdCliente{get;set;}
   public int IdVeiculo{get;set;}  
