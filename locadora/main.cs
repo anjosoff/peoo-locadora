@@ -17,7 +17,7 @@ public class Program{
         case 1:MainVeiculos();break;
         case 2:MainClientes();break;
         case 3:MainLocacao();break;
-        case 0:Main();break;
+        case 0:;break;
         default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
       } 
       }catch(Exception erro){
@@ -259,7 +259,7 @@ public static void MainLocacao(){
     Console.Write("Digite a data de retirada(enter para a data de hoje): ");
     string d=Console.ReadLine();
     if(d!="")data= DateTime.Parse(Console.ReadLine());
-    Console.Write("Digite a data de devolução:");
+    Console.Write("Digite a data de devolução(dd/mm/aaaa):");
     DateTime data2= DateTime.Parse(Console.ReadLine());
     Locacao obj = new Locacao{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo, Dretira=data, Ddevolve=data2};
     Sistema.LocacaoInserir(obj);
