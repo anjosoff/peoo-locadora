@@ -115,24 +115,51 @@ public static void ClienteInserir(Cliente obj) {
     if (aux != null) {
       aux.IdCliente=obj.IdCliente;
       aux.IdVeiculo=obj.IdVeiculo;
+      aux.Dretira=obj.Dretira;
+      aux.Ddevolve=obj.Ddevolve;
     }
   }
   public static void LocadoraExcluir(Locadora obj) {
     Locadora aux = LocadoraListar(obj.IdLocacao);
     if (aux != null) locadoras.Remove(aux);
   }
-  public static void ToXML(List<Locadora> obj) {
+  public static void ToXML() {
+    //locadora
     XmlSerializer xml = new XmlSerializer(typeof(List<Locadora>));
     StreamWriter f = new StreamWriter("locadora.xml");
-    xml.Serialize(f, obj);
+    xml.Serialize(f, locadoras);
     f.Close();
+
+    //veiculo
+    XmlSerializer xml1 = new XmlSerializer(typeof(List<Cliente>));
+    StreamWriter f1 = new StreamWriter("clientes.xml");
+    xml1.Serialize(f1, clientes);
+    f1.Close();
+    
+    //clientes
+    XmlSerializer xml2 = new XmlSerializer(typeof(Veiculo[]));
+    StreamWriter f2 = new StreamWriter("veiculo.xml");
+    xml2.Serialize(f2, VeiculoListar());
+    f2.Close();
   }
 
-  public static List<Locadora> FromXML() {
+  public static void FromXML() {
+    //locadora
     XmlSerializer xml = new XmlSerializer(typeof(List<Locadora>));
     StreamReader f = new StreamReader("locadora.xml");
-    List<Locadora> obj = (List<Locadora>)xml.Deserialize(f);
+    locadoras = (List<Locadora>)xml.Deserialize(f);
     f.Close();
-    return obj;
+    // veiculo
+    XmlSerializer xml1 = new XmlSerializer(typeof(Veiculo[]));
+    StreamReader f1 = new StreamReader("veiculo.xml");
+    veiculos = (Veiculo[])xml1.Deserialize(f1);
+    f1.Close();
+
+    //cliente
+    XmlSerializer xml2 = new XmlSerializer(typeof(List<Cliente>));
+    StreamReader f2 = new StreamReader("clientes.xml");
+    clientes = (List<Cliente>)xml2.Deserialize(f2);
+    f2.Close();
+
   }
 }
