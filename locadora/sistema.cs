@@ -97,6 +97,7 @@ public static void ClienteInserir(Cliente obj) {
     locacoes.Add(obj);
   }
   public static List<Locacao> LocacaoListar() {
+    locacoes.Sort();
     return locacoes;
   }
   public static List<Locacao> LocacaoListar(Cliente cliente) {   

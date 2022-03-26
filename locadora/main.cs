@@ -308,13 +308,13 @@ public static void MainLocacao(){
     Thread.Sleep(2000);
   }
 
-  public static void LocacaoListar(){
+  public static void LocacaoListar(){ //LISTANDO POR ORDEM DE DATA RETIRADA
     Console.Clear();
     Console.WriteLine("<---- Lista de Locações ---->");     
     foreach(Locacao obj in Sistema.LocacaoListar()) { 
       Veiculo v = Sistema.VeiculoListar(obj.IdVeiculo);
       Cliente c = Sistema.ClienteListar(obj.IdCliente);
-      Console.WriteLine($"\n{c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()}\n------------------------------\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}");
+      Console.WriteLine($"\n {c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()}\n------------------------------\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}");
     Console.WriteLine("------------------------------"); 
     }
     Thread.Sleep(5000);
