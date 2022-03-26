@@ -18,6 +18,7 @@ public class Program{
           case 1:MainVeiculos();break;
           case 2:MainClientes();break;
           case 3:MainLocacao();break;
+          case 4:MainDados();break;
           case 0:;break;
           default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
         }
@@ -34,6 +35,7 @@ public class Program{
     Console.WriteLine("1 - Veículos");
     Console.WriteLine("2 - Clientes");
     Console.WriteLine("3 - Alocação");
+    Console.WriteLine("4 - Dados do sistema");    
     Console.WriteLine("0 - Finalizar sistema");
     Console.WriteLine("\n------------------------------");
     Console.Write("\nOpção: ");
@@ -116,7 +118,7 @@ public class Program{
     Console.Clear();
     Console.WriteLine("<---- Lista de veiculos cadastrados ----> \n"); 
     foreach(Veiculo obj in Sistema.VeiculoListar())
-       Console.WriteLine(obj);
+       Console.WriteLine(obj.ToString());
     Console.WriteLine("\n------------------------------"); 
     Thread.Sleep(5000);
   }
@@ -134,7 +136,7 @@ public class Program{
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
     Thread.Sleep(2000);
   }
-
+  
   public static void MainClientes(){
     int opcliente=0;
     do{
@@ -210,7 +212,7 @@ public class Program{
     Console.Clear();
     Console.WriteLine("<---- Lista de clientes ativos ---->\n"); 
     foreach(Cliente obj in Sistema.ClienteListar())
-       Console.WriteLine(obj);
+       Console.WriteLine(obj.ToString());
     Console.WriteLine("------------------------------"); 
     Thread.Sleep(2000);
   }  
@@ -239,8 +241,7 @@ public static void MainLocacao(){
           case 2:LocacaoAtualizar();break; 
           case 3:LocacaoListar();break; 
           case 4:LocacaoExcluir();break;
-          case 5:Sistema.FromXML();break;
-          case 6:Sistema.ToXML();Console.WriteLine("Os dados da locação foram salvos");break;
+
           case 0:;break;
           default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
         }
@@ -257,8 +258,6 @@ public static void MainLocacao(){
     Console.WriteLine("2 - Atualizar locação");
     Console.WriteLine("3 - Listar locação");
     Console.WriteLine("4 - Excluir locação");
-    Console.WriteLine("5 - Abrir locações salvar");
-    Console.WriteLine("6 - Salvar locações");
     Console.WriteLine("0 - Voltar ao Menu Principal");
     Console.WriteLine("\n------------------------------"); 
     Console.Write("\nOpção: ");
@@ -332,4 +331,37 @@ public static void MainLocacao(){
     Console.WriteLine("\n----- Operação realizada com sucesso -----"); 
     Thread.Sleep(2000);
   }
+
+ public static void MainDados(){
+  int opdados=0;
+    do{
+      try{
+        Console.Clear();
+        Console.WriteLine("<----  Menu de Dados ----> \n");
+        opdados=SubMenuDados();
+        switch(opdados){
+          case 1:Sistema.ToXML();Console.WriteLine("\nOs dados da locação foram salvos");break;
+          case 2:Sistema.FromXML();break;
+          case 0:;break;
+          default: Console.WriteLine("---------------------------------------\nOpção não encontrada!\n----------------------------------------\n");break;
+        }
+      }catch(FormatException){
+        Console.WriteLine("Digite apenas números!");
+      }
+    Thread.Sleep(2000);
+    }while(opdados!=0);
+ }
+
+  public static int SubMenuDados(){
+    Console.WriteLine("Escolha uma opção: \n");
+    Console.WriteLine("1 - Salvar dados");
+    Console.WriteLine("2 - Recuperar últimos dados salvos");
+    Console.WriteLine("0 - Voltar ao Menu Principal");
+    Console.WriteLine("\n------------------------------"); 
+    Console.Write("Opção: ");
+    int opdados = int.Parse(Console.ReadLine());
+    Console.WriteLine();
+    return opdados;
+  }
+
 }

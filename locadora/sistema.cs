@@ -64,6 +64,7 @@ public static void ClienteInserir(Cliente obj) {
     clientes.Add(obj);
   }
   public static List<Cliente> ClienteListar() {
+    clientes.Sort();
     return clientes;
   }
   public static Cliente ClienteListar(int id) {
@@ -126,19 +127,19 @@ public static void ClienteInserir(Cliente obj) {
   public static void ToXML() {
     //locadora
     XmlSerializer xml = new XmlSerializer(typeof(List<Locacao>));
-    StreamWriter f = new StreamWriter("locacao.xml");
+    StreamWriter f = new StreamWriter("./banco de dados/locacao.xml");
     xml.Serialize(f, locacoes);
     f.Close();
 
     //veiculo
     XmlSerializer xml1 = new XmlSerializer(typeof(List<Cliente>));
-    StreamWriter f1 = new StreamWriter("clientes.xml");
+    StreamWriter f1 = new StreamWriter("./banco de dados/clientes.xml");
     xml1.Serialize(f1, clientes);
     f1.Close();
     
     //clientes
     XmlSerializer xml2 = new XmlSerializer(typeof(Veiculo[]));
-    StreamWriter f2 = new StreamWriter("veiculo.xml");
+    StreamWriter f2 = new StreamWriter("./banco de dados/veiculo.xml");
     xml2.Serialize(f2, VeiculoListar());
     f2.Close();
   }
@@ -146,20 +147,20 @@ public static void ClienteInserir(Cliente obj) {
   public static void FromXML() {
     //locadora
     XmlSerializer xml = new XmlSerializer(typeof(List<Locacao>));
-    StreamReader f = new StreamReader("locacao.xml");
+    StreamReader f = new StreamReader("./banco de dados/locacao.xml");
     locacoes = (List<Locacao>)xml.Deserialize(f);
     f.Close();
     // veiculo
     XmlSerializer xml1 = new XmlSerializer(typeof(Veiculo[]));
-    StreamReader f1 = new StreamReader("veiculo.xml");
+    StreamReader f1 = new StreamReader("./banco de dados/veiculo.xml");
     veiculos = (Veiculo[])xml1.Deserialize(f1);
     f1.Close();
 
     //cliente
     XmlSerializer xml2 = new XmlSerializer(typeof(List<Cliente>));
-    StreamReader f2 = new StreamReader("clientes.xml");
+    StreamReader f2 = new StreamReader("./banco de dados/clientes.xml");
     clientes = (List<Cliente>)xml2.Deserialize(f2);
     f2.Close();
-
+    Console.WriteLine("\n Dados recuperados com sucesso!");
   }
 }
