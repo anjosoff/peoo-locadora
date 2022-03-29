@@ -8,7 +8,7 @@ public class Cliente: IComparable<Cliente> {
   public override string ToString() {
     return $"ID: {IdCliente}\n{Nome} - {Cpf} - {Email}\n";
   }
-   public int CompareTo(Cliente obj){
+  public int CompareTo(Cliente obj){
     return Nome.CompareTo(obj.Nome);
   }
 }

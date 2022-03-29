@@ -23,6 +23,7 @@ class Sistema{
   public static Veiculo[] VeiculoListar(){
     Veiculo[] aux= new Veiculo[nVeiculos];
     Array.Copy(veiculos, aux, nVeiculos);
+    Array.Sort(aux);
     return aux;
   }
   public static Veiculo VeiculoListar(int id){
@@ -53,7 +54,7 @@ class Sistema{
   }
 
 /*
-   FUNÇÕE DA CLASSE CLIENTE 
+   FUNÇÕES DA CLASSE CLIENTE 
 */
 
 public static void ClienteInserir(Cliente obj) {
@@ -156,12 +157,12 @@ public static void ClienteInserir(Cliente obj) {
     StreamReader f1 = new StreamReader("./banco de dados/veiculo.xml");
     veiculos = (Veiculo[])xml1.Deserialize(f1);
     f1.Close();
-
+    nVeiculos = veiculos.Length;
     //cliente
     XmlSerializer xml2 = new XmlSerializer(typeof(List<Cliente>));
     StreamReader f2 = new StreamReader("./banco de dados/clientes.xml");
     clientes = (List<Cliente>)xml2.Deserialize(f2);
     f2.Close();
-    Console.WriteLine("\n Dados recuperados com sucesso!");
+    Console.WriteLine("\nDados recuperados com sucesso!");
   }
 }

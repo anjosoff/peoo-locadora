@@ -25,7 +25,7 @@ public class Program{
       }catch(Exception erro){
         Console.WriteLine("Erro:"+erro.Message);
       }
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
     }while(op!=0);
   }
 
@@ -63,7 +63,7 @@ public class Program{
       }catch(FormatException){
         Console.WriteLine("Digite apenas números");
       }
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
     }while(opveiculo!=0);
   }
 
@@ -85,7 +85,7 @@ public class Program{
   public static void VeiculoInserir(){
     Console.Clear();
     Console.WriteLine("<---- Inserir Veículo ---->\n"); 
-    Console.Write("Digite o ID para a identifação do veículo: ");
+    Console.Write("Digite o ID para a identificação do veículo: ");
     int id=int.Parse(Console.ReadLine());
     Console.Write("\nInforme o modelo do veiculo: ");
     string modelo=Console.ReadLine();
@@ -95,7 +95,7 @@ public class Program{
     Sistema.VeiculoInserir(obj);
     Console.WriteLine("\nVeiculo registrado!");
     Console.WriteLine("\n------------------------------");
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
   
   public static void VeiculoAtualizar(){
@@ -111,12 +111,12 @@ public class Program{
     Veiculo obj= new Veiculo(id,modelo,placa);
     Sistema.VeiculoAtualizar(obj);
      Console.WriteLine("\n----- Operação realizada com sucesso -----");
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
   
   public static void VeiculoListar(){
     Console.Clear();
-    Console.WriteLine("<---- Lista de veiculos cadastrados ----> \n"); 
+    Console.WriteLine("<---- Lista de veiculos cadastrados ---->"); 
     foreach(Veiculo obj in Sistema.VeiculoListar())
        Console.WriteLine(obj.ToString());
     Console.WriteLine("\n------------------------------"); 
@@ -134,7 +134,7 @@ public class Program{
     Veiculo obj = new Veiculo(id,modelo,placa);
     Sistema.VeiculoExcluir(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
   
   public static void MainClientes(){
@@ -155,7 +155,7 @@ public class Program{
       }catch(FormatException){
         Console.WriteLine("Digite apenas números!");
       }
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
     }while(opcliente!=0);
   }
 
@@ -187,7 +187,7 @@ public class Program{
     Cliente obj= new Cliente{IdCliente=idcliente,Nome=nome,Cpf=cpf,Email=email};
     Sistema.ClienteInserir(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----"); 
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
 
   public static void ClienteAtualizar(){
@@ -205,7 +205,7 @@ public class Program{
     Cliente obj =  new Cliente{IdCliente=id,Nome=nome,Cpf=cpf,Email=email};
     Sistema.ClienteAtualizar(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");    
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
   
   public static void ClienteListar(){
@@ -214,7 +214,7 @@ public class Program{
     foreach(Cliente obj in Sistema.ClienteListar())
        Console.WriteLine(obj.ToString());
     Console.WriteLine("------------------------------"); 
-    Thread.Sleep(2000);
+    Thread.Sleep(4000);
   }  
   
   public static void ClienteExcluir(){
@@ -226,7 +226,7 @@ public class Program{
     Cliente obj =  new Cliente{IdCliente=id};
     Sistema.ClienteExcluir(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
 
 public static void MainLocacao(){
@@ -248,7 +248,7 @@ public static void MainLocacao(){
       }catch(FormatException){
         Console.WriteLine("Digite apenas números");
       }
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
     }while(oplocacao!=0);
   }
 
@@ -266,8 +266,8 @@ public static void MainLocacao(){
   }
 
   public static void LocacaoInserir(){
+    DateTime data = new DateTime();
     Console.Clear();
-    DateTime data=DateTime.Now;
     Console.WriteLine("<---- Novo Cadastro de Locação ---->"); 
     Console.Write("\nEscolha um ID para esta locação: ");
     int idloc=int.Parse(Console.ReadLine());
@@ -279,14 +279,18 @@ public static void MainLocacao(){
     Console.Write("\nID do cliente que deseja alocar:");    
     int idcliente=int.Parse(Console.ReadLine());
     Console.Write("\nDigite a data de retirada(enter para a data de hoje): ");
-    string d=Console.ReadLine();
-    if(d!="")data= DateTime.Parse(Console.ReadLine());
+    string d=Console.ReadLine(); 
+    if(d==""){
+      data = DateTime.Now;
+    }else{
+      data = DateTime.Parse(d);
+    }
     Console.Write("\nDigite a data de devolução(dd/mm/aaaa):");
     DateTime data2= DateTime.Parse(Console.ReadLine());
     Locacao obj = new Locacao{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo, Dretira=data, Ddevolve=data2};
     Sistema.LocacaoInserir(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
   
   public static void LocacaoAtualizar(){
@@ -305,7 +309,7 @@ public static void MainLocacao(){
     Locacao obj =  new Locacao{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo};
     Sistema.LocacaoAtualizar(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
 
   public static void LocacaoListar(){ //LISTANDO POR ORDEM DE DATA RETIRADA
@@ -314,8 +318,9 @@ public static void MainLocacao(){
     foreach(Locacao obj in Sistema.LocacaoListar()) { 
       Veiculo v = Sistema.VeiculoListar(obj.IdVeiculo);
       Cliente c = Sistema.ClienteListar(obj.IdCliente);
-      Console.WriteLine($"\n {c.Nome}      {c.Cpf}\n{c.Email}\n------------------------------\n{v.GetModelo()}      {v.GetPlaca()}\n------------------------------\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}");
-    Console.WriteLine("------------------------------"); 
+      Console.WriteLine("------------------------------");
+      Console.WriteLine($"\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}\nCliente:\n{c.Nome} - {c.Cpf} - E-mail:{c.Email}\nVeículo:\n{v.GetModelo()} - {v.GetPlaca()}");
+    Console.WriteLine("\n------------------------------"); 
     }
     Thread.Sleep(5000);
   }
@@ -329,7 +334,7 @@ public static void MainLocacao(){
     Locacao obj =  new Locacao{IdLocacao=id};
     Sistema.LocacaoExcluir(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----"); 
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
   }
 
  public static void MainDados(){
@@ -348,7 +353,7 @@ public static void MainLocacao(){
       }catch(FormatException){
         Console.WriteLine("Digite apenas números!");
       }
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
     }while(opdados!=0);
  }
 

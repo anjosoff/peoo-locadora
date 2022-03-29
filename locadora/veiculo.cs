@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
-public class Veiculo: IComparable<Veiculo>{
+
+public class Veiculo: IComparable <Veiculo>{
   private int idVeiculo;
   public int IdVeiculo{
     set{idVeiculo=value;}
@@ -42,10 +42,10 @@ public class Veiculo: IComparable<Veiculo>{
   public int GetIdVeiculo(){
     return idVeiculo;
   }
-  /*public int CompareTo(Veiculo obj){
-    return Modelo.CompareTo(obj.Modelo);
-  }*/
   public override string ToString(){
-    return $"ID: {IdVeiculo}\n Modelo: {modelo}\n  Placa:{placa}";
+    return $"\nID: {IdVeiculo}\n Modelo: {modelo}\n  Placa:{placa}";
+  }
+  public int CompareTo(Veiculo obj){
+    return modelo.CompareTo(obj.GetModelo());
   }
 }
