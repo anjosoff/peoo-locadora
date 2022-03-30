@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfCliente xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+<ArrayOfCliente xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Cliente>
+    <IdCliente>1</IdCliente>
+    <Nome>Guilherme</Nome>
+    <Cpf>1010100108</Cpf>
+    <Email>gui@gmail.com</Email>
+  </Cliente>
+  <Cliente>
+    <IdCliente>2</IdCliente>
+    <Nome>Leonardo</Nome>
+    <Cpf>2020002209</Cpf>
+    <Email>leo@gmail.com</Email>
+  </Cliente>
+</ArrayOfCliente>

@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfLocacao xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+<ArrayOfLocacao xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Locacao>
+    <IdLocacao>1</IdLocacao>
+    <IdCliente>1</IdCliente>
+    <IdVeiculo>1</IdVeiculo>
+    <Dretira>2022-03-30T01:08:24.024545+00:00</Dretira>
+    <Ddevolve>2022-04-01T00:00:00</Ddevolve>
+  </Locacao>
+  <Locacao>
+    <IdLocacao>2</IdLocacao>
+    <IdCliente>2</IdCliente>
+    <IdVeiculo>2</IdVeiculo>
+    <Dretira>2022-03-30T01:08:58.679125+00:00</Dretira>
+    <Ddevolve>2022-04-01T00:00:00</Ddevolve>
+  </Locacao>
+</ArrayOfLocacao>

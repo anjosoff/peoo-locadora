@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class Veiculo: IComparable <Veiculo>{
   private int idVeiculo;

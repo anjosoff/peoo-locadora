@@ -273,10 +273,10 @@ public static void MainLocacao(){
     int idloc=int.Parse(Console.ReadLine());
     Console.WriteLine("\nPara seleção de veículos visualize os automovéis disponiveis:\n");
     VeiculoListar();
-    Console.Write("\nID do veículo que deseja alocar:");
+    Console.Write("\nID do veículo que deseja alocar: ");
     int idveiculo=int.Parse(Console.ReadLine());
     ClienteListar();
-    Console.Write("\nID do cliente que deseja alocar:");    
+    Console.Write("\nID do cliente que deseja alocar: ");    
     int idcliente=int.Parse(Console.ReadLine());
     Console.Write("\nDigite a data de retirada(enter para a data de hoje): ");
     string d=Console.ReadLine(); 
@@ -285,7 +285,7 @@ public static void MainLocacao(){
     }else{
       data = DateTime.Parse(d);
     }
-    Console.Write("\nDigite a data de devolução(dd/mm/aaaa):");
+    Console.Write("\nDigite a data de devolução(dd/mm/aaaa): ");
     DateTime data2= DateTime.Parse(Console.ReadLine());
     Locacao obj = new Locacao{IdLocacao=idloc,IdCliente=idcliente,IdVeiculo=idveiculo, Dretira=data, Ddevolve=data2};
     Sistema.LocacaoInserir(obj);
@@ -294,6 +294,7 @@ public static void MainLocacao(){
   }
   
   public static void LocacaoAtualizar(){
+    DateTime data = new DateTime();
     Console.Clear();
     LocacaoListar();
     Console.WriteLine("<---- Atualizar uma Locação ---->"); 
@@ -306,7 +307,16 @@ public static void MainLocacao(){
     ClienteListar();
     Console.Write("\nInsira o ID de um dos clientes acima: ");
     int idcliente = int.Parse(Console.ReadLine());
-    Locacao obj =  new Locacao{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo};
+    Console.Write("\nDigite a data de retirada(enter para a data de hoje): ");
+    string d=Console.ReadLine(); 
+    if(d==""){
+      data = DateTime.Now;
+    }else{
+      data = DateTime.Parse(d);
+    }
+    Console.Write("\nDigite a data de devolução(dd/mm/aaaa): ");
+    DateTime data2= DateTime.Parse(Console.ReadLine());
+    Locacao obj =  new Locacao{IdLocacao=id,IdCliente=idcliente,IdVeiculo=idveiculo, Dretira=data, Ddevolve=data2};
     Sistema.LocacaoAtualizar(obj);
     Console.WriteLine("\n----- Operação realizada com sucesso -----");
     Thread.Sleep(1000);
@@ -319,7 +329,7 @@ public static void MainLocacao(){
       Veiculo v = Sistema.VeiculoListar(obj.IdVeiculo);
       Cliente c = Sistema.ClienteListar(obj.IdCliente);
       Console.WriteLine("------------------------------");
-      Console.WriteLine($"\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}\nCliente:\n{c.Nome} - {c.Cpf} - E-mail:{c.Email}\nVeículo:\n{v.GetModelo()} - {v.GetPlaca()}");
+      Console.WriteLine($"\nID:{obj.IdLocacao}\nData de retirada:{obj.Dretira}\nData de devolução:{obj.Ddevolve}\nCliente:\n{c.Nome} - {c.Cpf} - E-mail:{c.Email}\nVeículo:\n{v.GetModelo()} - {v.GetPlaca()}");
     Console.WriteLine("\n------------------------------"); 
     }
     Thread.Sleep(5000);

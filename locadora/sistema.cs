@@ -87,7 +87,7 @@ public static void ClienteInserir(Cliente obj) {
   }
 
 /*
-    FUNÇÕE DA CLASSE LOCADORA
+    FUNÇÕES DA CLASSE LOCADORA
 */
   
   public static void LocacaoInserir(Locacao obj) {
